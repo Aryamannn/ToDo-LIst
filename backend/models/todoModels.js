@@ -1,9 +1,9 @@
-import { Schema } from 'mpongoose';
+const mongoose = require('mongoose');
 
-const TodoSchema = new Schema({
+const TodoSchema = new mongoose.Schema({
     title: {
         type: String,
-        requoired: true
+        required: true
     },
     completed: {
         type: Boolean,
@@ -11,6 +11,6 @@ const TodoSchema = new Schema({
     }
 });
 
-const Todo = mongoose.model ('Todo', TodoSchema);
+const Todo = mongoose.model('Todo', TodoSchema);
 
-model.exports = Todo;
+module.exports = Todo;

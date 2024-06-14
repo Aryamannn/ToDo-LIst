@@ -23,7 +23,7 @@ exports.createTodo = async (req, res) => {
     }
 };
 
-exports.updateTodo = async (req, req) => {
+exports.updateTodo = async (req, res) => {
     try {
         const updateTodo = await Todo.findByIdAndUpdate(res.params.id, req.body, { new: true });
         res.json(updatedTodo);

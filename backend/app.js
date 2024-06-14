@@ -1,27 +1,27 @@
-import express, { json } from 'express';   //mongoose cors and dotenv
-import { connect } from 'mongoose';
-import cors from 'cors';
-import { config } from 'dotenv';
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const dotenv = require('dotenv');
 
-config();
+dotenv.config();
 
 const app = express();
 app.use(cors());
-app.use(json());
+app.use(express.json());
 
-connect(process.env.MONGOOSE_URI, {
+mongoose.connect(process.env.MONGO_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
-}). then (() => {
-    console.log("Connected to MongoDB");
-}). catch (() => {
-    console.log("Error Connecting to MongoDB", error);
+}).then(() => {
+    console.log('Connected to MongoDB');
+}).catch((error) => {
+    console.log('Error connecting to MongoDB:', error);
 });
 
-import todoRoutes from './routes/todoRoutes';
+const todoRoutes = require('./routes/todoRoutes');
 app.use('/todos', todoRoutes);
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
-    console.log('Server running on port ${PORT}');
+    console.log(`Server running on port ${PORT}`);
 });
